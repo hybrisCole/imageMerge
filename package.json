@@ -1,0 +1,25 @@
+{
+  "name": "imageMerge",
+  "version": "0.0.0",
+  "description": "Image Merging for profile images (a la twitbon)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hybrisCole/imageMerge"
+  },
+  "keywords": [
+    "hapi",
+    "image",
+    "merge",
+    "node-canvas"
+  ],
+  "author": "Alberto Cole <acpii2005@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hybrisCole/imageMerge/issues"
+  },
+  "homepage": "https://github.com/hybrisCole/imageMerge"
+}
