@@ -1,10 +1,11 @@
 {
   "name": "imageMerge",
-  "version": "0.0.0",
+  "version": "0.0.0-3",
   "description": "Image Merging for profile images (a la twitbon)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,13 @@
   "bugs": {
     "url": "https://github.com/hybrisCole/imageMerge/issues"
   },
-  "homepage": "https://github.com/hybrisCole/imageMerge"
+  "homepage": "https://github.com/hybrisCole/imageMerge",
+  "dependencies": {
+    "hapi": "6.0.2",
+    "canvas": "1.1.5"
+  },
+  "subdomain": "imageMerge",
+  "engines": {
+    "node": "0.10.x"
+  }
 }
