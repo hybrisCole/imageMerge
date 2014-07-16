@@ -8,7 +8,9 @@ server.route({
   handler: function (request, reply) {
     var Canvas = require('canvas');
     https.get(request.params.urlImagenPerfil, function(res) {
-      var body = '';
+      var body = '',
+        canvas,
+        ctx;
       res.setEncoding('binary');
       res.on('data', function(chunk) { body += chunk; });
       res.on('end', function() {
