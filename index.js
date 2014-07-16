@@ -17,7 +17,7 @@ server.route({
         canvas = new Canvas(img.width,img.height);
         ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0);
-        https.get('https://s3.amazonaws.com/monge/monge-logo.png',function(resLogo){
+        https.get('https://s3.amazonaws.com/monge/mamaPrimeroProfile.png',function(resLogo){
           var logoBody = '';
           resLogo.setEncoding('binary');
           resLogo.on('data', function(chunk) { logoBody += chunk; });
@@ -25,7 +25,8 @@ server.route({
             var imgLogo = new Canvas.Image;
             imgLogo.src = new Buffer(logoBody, 'binary');
             ctx.drawImage(imgLogo, 0, (img.height-imgLogo.height));
-            reply('<img src="' + canvas.toDataURL() + '" />');
+
+            reply(new Buffer(canvas.toDataURL().replace(/^data:image\/\w+;base64,/, ''), 'base64'));
           })
         });
       });
