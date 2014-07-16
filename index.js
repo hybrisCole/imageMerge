@@ -28,7 +28,10 @@ server.route({
             imgLogo.src = new Buffer(logoBody, 'binary');
             ctx.drawImage(imgLogo, 0, (img.height-imgLogo.height));
 
-            reply(new Buffer(canvas.toDataURL().replace(/^data:image\/\w+;base64,/, ''), 'base64'));
+            reply(new Buffer(
+              canvas.toDataURL().replace(/^data:image\/\w+;base64,/, ''),
+              'base64')
+            );
           })
         });
       });
