@@ -1,6 +1,6 @@
 {
   "name": "imageMerge",
-  "version": "0.0.0-39",
+  "version": "0.0.0-52",
   "description": "Image Merging for profile images (a la twitbon)",
   "main": "index.js",
   "scripts": {
