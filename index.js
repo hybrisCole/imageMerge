@@ -53,6 +53,59 @@ server.route({
 
 server.route({
   method: 'GET',
+  path: '/canvasMongeCover/{urlImagenCover}',
+  handler: function (request, reply) {
+    var Canvas = require('canvas');
+    https.get(request.params.urlImagenCover, function(res) {
+      var body = '',
+        canvas,
+        ctx;
+      res.setEncoding('binary');
+      res.on('data', function(chunk) { body += chunk; });
+      res.on('end', function() {
+        var img = new Canvas.Image;
+        img.src = new Buffer(body, 'binary');
+        canvas = new Canvas(img.width,img.height);
+        ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        https.get('https://s3.amazonaws.com/monge/rabito-cover.png',function(resRabito){
+          var bodyRabito = '';
+          resRabito.setEncoding('binary')
+          resRabito.on('data', function(chunk) { bodyRabito += chunk; });
+          resRabito.on('end', function(chunk) {
+            var imgRabito = new Canvas.Image;
+            imgRabito.src = new Buffer(bodyRabito, 'binary');
+            ctx.fillStyle = '#231F20';
+            ctx.fillRect(0,0,150,39);
+            ctx.drawImage(imgRabito, 150, 0);
+            reply(new Buffer(
+                canvas.toDataURL().replace(/^data:image\/\w+;base64,/, ''),
+                'base64')
+            );
+          });
+        });
+        /*https.get('https://s3.amazonaws.com/monge/mamaPrimeroProfile.png',function(resLogo){
+          var logoBody = '';
+          resLogo.setEncoding('binary');
+          resLogo.on('data', function(chunk) { logoBody += chunk; });
+          resLogo.on('end', function() {
+            var imgLogo = new Canvas.Image;
+            imgLogo.src = new Buffer(logoBody, 'binary');
+            ctx.drawImage(imgLogo, 0, (200-imgLogo.height));
+
+            reply(new Buffer(
+                canvas.toDataURL().replace(/^data:image\/\w+;base64,/, ''),
+                'base64')
+            );
+          });
+        });*/
+      });
+    });
+  }
+});
+
+server.route({
+  method: 'GET',
   path: '/cedulaMonge/{urlImagenPerfil}/{nombre}/{primerApellido}/{segundoApellido}/{cedula}',
   handler: function (request, reply) {
     var Canvas = require('canvas');
